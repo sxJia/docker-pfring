@@ -4,7 +4,7 @@ RUN apt-get update
 RUN apt-get -y install libpcre3 libpcre3-dbg libpcre3-dev \
     build-essential autoconf automake libtool libnet1-dev \
     libyaml-0-2 libyaml-dev zlib1g zlib1g-dev libcap-ng-dev libcap-ng0 \
-    make flex bison git wget libmagic-dev pkg-config libnuma-dev
+    make flex bison git wget libmagic-dev pkg-config libnuma-dev strace
 
 RUN cd /usr/local/src && git clone https://github.com/xtao/PF_RING.git
 
@@ -44,3 +44,8 @@ RUN ldconfig
 
 # Add /opt/pf_ring to $PATH
 ENV PATH /opt/pf_ring/bin:/opt/pf_ring/sbin:$PATH
+
+ADD docker-zerocopy.sh /zerocopy.sh
+ADD docker-entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/bin/bash"]
