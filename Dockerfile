@@ -29,6 +29,12 @@ RUN cd /usr/local/src/PF_RING/userland/tcpdump-* && \
     make && \
     make install
 
+# Build example userland tools
+RUN cd /usr/local/src/PF_RING/userland/examples && \
+    make
+RUN cd /usr/local/src/PF_RING/userland/examples_zc && \
+    make
+
 # Copy the pf_ring kernel source header
 RUN cp /usr/local/src/PF_RING/kernel/linux/pf_ring.h /usr/include/linux/pf_ring.h
 
