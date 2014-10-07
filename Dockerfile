@@ -45,7 +45,7 @@ RUN ldconfig
 # Add /opt/pf_ring to $PATH
 ENV PATH /opt/pf_ring/bin:/opt/pf_ring/sbin:$PATH
 
-ADD docker-zerocopy.sh /zerocopy.sh
 ADD docker-entrypoint.sh /entrypoint.sh
+ADD zerocopy.sh /zerocopy.sh
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/bin/bash"]
